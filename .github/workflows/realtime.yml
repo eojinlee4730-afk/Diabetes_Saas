@@ -18,4 +18,4 @@ jobs:
       - name: Run script
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: python push_realtime.py
+        run: python scripts/push_realtime.py
