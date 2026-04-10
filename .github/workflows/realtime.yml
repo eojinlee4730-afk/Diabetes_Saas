@@ -1,8 +1,6 @@
 name: Push realtime data
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -15,7 +13,6 @@ jobs:
       - name: Install packages
         run: pip install pandas sqlalchemy psycopg2-binary
 
-      # 🔥 여기서 SECRET 제대로 들어오는지 확인
       - name: Check DATABASE_URL
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
