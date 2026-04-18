@@ -1,43 +1,28 @@
 import streamlit as st
-from db import load_realtime_data
-from charts import (
-    show_outcome_distribution,
-    show_glucose_trend,
-    show_bmi_trend,
-    show_age_distribution,
-    show_blood_pressure_trend,
+
+from db import run_query
+from queries import REALTIME_DATA_QUERY
+from filters import apply_filters
+from charts import show_kpis, show_dashboard_charts
+
+
+st.set_page_config(
+    page_title="Diabetes Realtime Dashboard",
+    layout="wide"
 )
 
-st.set_page_config(page_title="Diabetes Dashboard", layout="wide")
 st.title("Diabetes Realtime Dashboard")
 
-df = load_realtime_data()
+df = run_query(REALTIME_DATA_QUERY)
 
-# KPI
-col1, col2, col3, col4 = st.columns(4)
+if df.empty:
+    st.warning("No data found in realtime_data.")
+    st.stop()
 
-col1.metric("Total Rows", len(df))
-if "Glucose" in df.columns:
-    col2.metric("Avg Glucose", round(df["Glucose"].mean(), 1))
-if "BMI" in df.columns:
-    col3.metric("Avg BMI", round(df["BMI"].mean(), 1))
-if "Age" in df.columns:
-    col4.metric("Avg Age", round(df["Age"].mean(), 1))
+filtered_df = apply_filters(df)
 
-# Charts
-row1_col1, row1_col2 = st.columns(2)
-with row1_col1:
-    show_outcome_distribution(df)
-with row1_col2:
-    show_glucose_trend(df)
-
-row2_col1, row2_col2 = st.columns(2)
-with row2_col1:
-    show_bmi_trend(df)
-with row2_col2:
-    show_age_distribution(df)
-
-show_blood_pressure_trend(df)
+show_kpis(filtered_df)
+show_dashboard_charts(filtered_df)
 
 with st.expander("Raw Data"):
-    st.dataframe(df)
+    st.dataframe(filtered_df, use_container_width=True)
