@@ -6,6 +6,8 @@ It analyzes a healthcare dataset related to diabetes risk and provides interacti
 
 The application is connected to a Neon PostgreSQL database and retrieves realtime data from the `realtime_data` table.
 
+[Live Dashboard](https://diabetessaas-application.streamlit.app/)
+
 ---
 
 ## Features
