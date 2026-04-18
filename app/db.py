@@ -1,11 +1,17 @@
-import pandas as pd
-import streamlit as st
+import os
 from sqlalchemy import create_engine
+from sqlalchemy.engine import Engine
 
-@st.cache_resource
-def get_engine():
-    return create_engine(st.secrets["DATABASE_URL"])
 
-@st.cache_data(ttl=10)
-def run_query(query: str) -> pd.DataFrame:
-    return pd.read_sql(query, get_engine())
+def get_database_engine() -> Engine:
+    """
+    Create and return a SQLAlchemy engine.
+    """
+
+    database_url = os.getenv("DATABASE_URL")
+
+    if not database_url:
+        raise ValueError("DATABASE_URL is not set.")
+
+    engine = create_engine(database_url)
+    return engine
