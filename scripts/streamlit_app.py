@@ -4,11 +4,11 @@ from sqlalchemy import create_engine
 
 st.title("Realtime Diabetes Dashboard")
 
-# DB 연결
+# Connecting DB
 DATABASE_URL = st.secrets["DATABASE_URL"]
 engine = create_engine(DATABASE_URL)
 
-# 데이터 가져오기
+# Bring Data
 query = """
 SELECT *
 FROM realtime_data
