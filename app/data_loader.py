@@ -1,8 +1,8 @@
 import pandas as pd
 import streamlit as st
 
-from app.db import get_database_engine
-from app.queries import SELECT_ALL_DIABETES_DATA
+from db import get_database_engine
+from queries import SELECT_ALL_DIABETES_DATA
 
 
 @st.cache_data
