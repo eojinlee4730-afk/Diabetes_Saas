@@ -1,26 +1,28 @@
-# Portfolio Dashboard
+# Diabetes Analytics Dashboard
 
 ## Overview
-This project is a multi-page data dashboard built with Streamlit.  
-It provides interactive data exploration, filtering, and visualization, and is designed as a portfolio project demonstrating data engineering and analytics capabilities.
+This project is a multi-page data analytics dashboard built with Streamlit.  
+It analyzes a healthcare dataset related to diabetes risk and provides interactive visualization, filtering, and exploration tools.
+
+The application is connected to a Neon PostgreSQL database and retrieves realtime data from the `realtime_data` table.
 
 ---
 
 ## Features
-- Multi-page dashboard structure
-- Interactive sidebar filters
-- Summary metrics (row count, total values, unique categories)
+- Multi-page Streamlit dashboard
+- Interactive filtering (Outcome, Age, Glucose, BMI, Pregnancies)
+- Real-time data loading from Neon PostgreSQL
+- Statistical summaries and KPI metrics
 - Data visualization using Plotly
+- Correlation analysis between medical features
 - Raw data inspection and CSV download
-- Modular code structure (data loading, filtering, chart generation)
-- Optional database integration (SQLAlchemy)
-- Automated data pipeline using GitHub Actions
+- Modular architecture (data, filters, charts, pages)
+- Automated pipeline support via GitHub Actions
 
 ---
 
 ## Project Structure
-
-```
+```text
 repo/
 ├── app/
 │   ├── __init__.py
@@ -32,16 +34,15 @@ repo/
 │   ├── charts.py
 │   └── pages/
 │       ├── 1_Dashboard.py
-│       ├── 2_Region_Analysis.py
+│       ├── 2_Feature_Analysis.py
 │       └── 3_Raw_Data.py
 ├── scripts/
 │   └── push_realtime.py
 ├── data/
-│   ├── raw_diabetes_data.csv
-│   └── processed_diabetes_data.csv
 ├── requirements.txt
 └── README.md
 ```
+
 ---
 
 ## Tech Stack
@@ -49,8 +50,27 @@ repo/
 - Streamlit
 - Pandas
 - Plotly
-- SQLAlchemy (optional)
+- SQLAlchemy
+- PostgreSQL (Neon)
 - GitHub Actions
+
+---
+
+## Data Source & License
+This project uses a publicly available diabetes dataset from Kaggle.
+
+- License: CC0 (Public Domain)
+- The dataset can be used, modified, and distributed without restriction.
+
+Dataset source:
+- https://www.kaggle.com/ (replace with actual dataset link)
+
+---
+
+## Database
+- Source: Neon PostgreSQL
+- Table: `realtime_data`
+- Data is loaded dynamically at runtime
 
 ---
 
@@ -59,69 +79,24 @@ repo/
 ### 1. Install dependencies
 pip install -r requirements.txt
 
-### 2. Run the application
+### 2. Run the app
 streamlit run app/streamlit_app.py
 
 ---
 
 ## Deployment
-This project can be deployed using Streamlit Community Cloud.
+This project is designed to be deployed on Streamlit Community Cloud.
 
-- Main file: app/streamlit_app.py
-- requirements.txt must be in the root directory
+- Main file: `app/streamlit_app.py`
+- Ensure `requirements.txt` is in the root directory
+- Add database credentials in Streamlit Secrets:
 
----
 
-## Data
-- Data is stored in the `data/` directory
-- Raw and processed datasets are separated
-- Replaceable with any structured dataset
 
 ---
 
-## Automation (Optional)
-A GitHub Actions workflow is included to simulate a realtime data pipeline.
-
-- Runs on a schedule
-- Executes scripts/push_realtime.py
-- Can be extended to:
-  - Fetch external data
-  - Update database
-  - Trigger analytics
-
----
-
-## Notes
-- Application code is in `app/`
-- Pipeline scripts are in `scripts/`
-- Modular structure for scalability
-
----
-
-## Future Improvements
-- Add advanced visualizations
-- Connect to production database
-- Implement authentication
-- Optimize caching
-- Improve UI/UX
-
----
-
-## Author
-This project is created as part of a data analytics portfolio.
-
----
-
-## Data Source & License
-This project uses publicly available datasets from Kaggle.
-
-- License: CC0 (Public Domain)
-- This means the data can be used, modified, and distributed without restriction.
-
-Dataset source:
-- https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset/data
-
-All data usage in this project complies with the original license terms.
+## Data Notes
+Some zero values in physiological variables (e.g., Glucose, BloodPressure, BMI) may represent missing measurements rather than actual clinical values.
 
 ---
 
@@ -133,9 +108,18 @@ AI was used for:
 - Documentation drafting
 - General development support
 
-All final implementation, validation, and design decisions were reviewed and adjusted manually.
+All final implementation and design decisions were reviewed and adjusted manually.
 
 ---
 
-## Disclaimer
-This project is for educational and portfolio purposes only.
+## Future Improvements
+- Add predictive modeling (diabetes risk classification)
+- Integrate more advanced visualizations
+- Improve UI/UX design
+- Add user authentication
+- Optimize performance for large datasets
+
+---
+
+## Author
+This project is created as part of a data analytics portfolio.
