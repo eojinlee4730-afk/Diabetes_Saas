@@ -1,21 +1,33 @@
 import pandas as pd
 import streamlit as st
 
+from app.db import get_database_engine
+from app.queries import SELECT_ALL_DIABETES_DATA
+
+
 @st.cache_data
-def load_data(path: str = "data/diabetes.csv") -> pd.DataFrame:
+def load_data() -> pd.DataFrame:
     """
-    Load dataset from CSV file.
-
-    Args:
-        path (str): Path to CSV file
-
-    Returns:
-        pd.DataFrame: Loaded dataset
+    Load diabetes data from the realtime_data table in Neon PostgreSQL.
     """
-    df = pd.read_csv(path)
 
-    # Convert date column if exists
-    if "date" in df.columns:
-        df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    engine = get_database_engine()
+    df = pd.read_sql(SELECT_ALL_DIABETES_DATA, engine)
+
+    numeric_columns = [
+        "Pregnancies",
+        "Glucose",
+        "BloodPressure",
+        "SkinThickness",
+        "Insulin",
+        "BMI",
+        "DiabetesPedigreeFunction",
+        "Age",
+        "Outcome"
+    ]
+
+    for column in numeric_columns:
+        if column in df.columns:
+            df[column] = pd.to_numeric(df[column], errors="coerce")
 
     return df
