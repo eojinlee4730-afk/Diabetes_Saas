@@ -1,3 +1,5 @@
+import streamlit as st
+
 from data_loader import load_data
 from filters import render_sidebar_filters, apply_filters
 from charts import (
