@@ -20,6 +20,7 @@ It provides interactive data exploration, filtering, and visualization, and is d
 
 ## Project Structure
 
+```
 repo/
 ├── app/
 │   ├── __init__.py
@@ -40,7 +41,7 @@ repo/
 │   └── processed_diabetes_data.csv
 ├── requirements.txt
 └── README.md
-
+```
 ---
 
 ## Tech Stack
