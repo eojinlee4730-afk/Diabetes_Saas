@@ -1,8 +1,6 @@
-import streamlit as st
-
-from app.data_loader import load_data
-from app.filters import render_sidebar_filters, apply_filters
-from app.charts import create_correlation_heatmap
+from data_loader import load_data
+from filters import render_sidebar_filters, apply_filters
+from charts import create_correlation_heatmap
 
 st.set_page_config(page_title="Feature Analysis", layout="wide")
 
