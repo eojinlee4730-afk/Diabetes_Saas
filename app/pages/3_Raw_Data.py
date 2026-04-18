@@ -1,7 +1,7 @@
 import streamlit as st
 
-from app.data_loader import load_data
-from app.filters import render_sidebar_filters, apply_filters
+from data_loader import load_data
+from filters import render_sidebar_filters, apply_filters
 
 st.set_page_config(page_title="Raw Data", layout="wide")
 
