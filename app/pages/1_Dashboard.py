@@ -1,15 +1,12 @@
-import streamlit as st
-
-from app.data_loader import load_data
-from app.filters import render_sidebar_filters, apply_filters
-from app.charts import (
+from data_loader import load_data
+from filters import render_sidebar_filters, apply_filters
+from charts import (
     create_outcome_distribution_chart,
     create_age_distribution_chart,
     create_glucose_distribution_chart,
     create_bmi_box_plot,
     create_glucose_bmi_scatter,
 )
-
 st.set_page_config(page_title="Dashboard", layout="wide")
 
 st.title("Diabetes Dashboard")
