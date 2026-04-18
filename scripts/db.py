@@ -6,9 +6,6 @@ from sqlalchemy import create_engine
 def get_engine():
     return create_engine(st.secrets["DATABASE_URL"])
 
-def load_realtime_data():
-    query = """
-    SELECT *
-    FROM realtime_data
-    """
+@st.cache_data(ttl=10)
+def run_query(query: str) -> pd.DataFrame:
     return pd.read_sql(query, get_engine())
