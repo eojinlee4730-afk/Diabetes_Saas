@@ -65,8 +65,7 @@ This project uses a publicly available diabetes dataset from Kaggle.
 - The dataset can be used, modified, and distributed without restriction.
 
 Dataset source:
-- https://www.kaggle.com/ (replace with actual dataset link)
-
+- https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset/data
 ---
 
 ## Database
